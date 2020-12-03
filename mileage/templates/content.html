@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+마일리지 기부페이지 개발중 
+
+<head>
+    <style>
+        .container
+        {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class = "container" >
+        <p>제목 | {{mileage.title}}</p>
+        <p>단체이름 | {{mileage.group}}</p>
+        <p>총 모금액  | {{mileage.total_money}}</p>
+        <p>기부내용 | {{mileage.contents}}</p>
+    
+        
+    <br>
+        
+        <form action = "{% url 'donate'  mileage.id %}", method="POST">{% csrf_token %} 기부금액
+            <br> 보유마일리지     →         기부
+            <br> ⭐10000원       → <textarea cols = 10 rows =2 name = "total_money"></textarea>원
+            <br>
+            <br><input class = "btn btn-dark" type = "submit" value ="기부하기" 
+            onclick = "window.open('popup','Thank you','width =300, height = 150');">
+    
+        </form>
+    </div>
+    
+</body>
+
+{% endblock %}
+
+
+
+
+ 
+  
+

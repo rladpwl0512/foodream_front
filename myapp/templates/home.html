@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>푸드림</title>
+        <style>
+            .image { 
+                position:relative;
+                text-align:center;
+                color:#FFFFFF;
+             }
+
+             .forest_img{
+                 height:500px;
+             }
+             
+            .image div { 
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%, -50%); 
+                font-size: 40px; 
+                font-weight: bold;
+
+            }
+            .food_list{
+                text-align: center;
+            }
+            
+            .card1, .card2{
+                float: left;
+                width: 600px;
+                margin: 0 10px;
+            }
+
+            .card-img-top{
+                width: 200px;
+                height: 200px;
+            }
+
+            .more1{
+                text-align:center;
+                clear:left;
+
+            }
+            footer {
+                display: flex;
+                justify-content: center;
+                padding: 5px;
+                background-color: lightgray;
+                color: #fff;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <!-- <div id = "forest"><img src="{% static 'img/forest.jpg' %}" width=100% alt="숲" title="숲"></div> -->
+        <div class ="image">
+            <img src="{% static 'img/forest.png' %}" width=100% alt="숲" title="숲" class="forest_img" >
+            <div class = "content">오늘 하루 {{context}}그루의 나무가 심어졌습니다.</div>
+            <div class = "img-cover"></div>
+        </div>
+
+        <h1 class = "food_list">식재료직거래 목록</h1>
+
+        {% for form in forms.all %}
+            <div class="card1" style="width: 18rem;"> <!--card로 바꾸면 테두리 생김(부트스트랩 내장 요소)-->
+                <a href="{% url 'detail' form.id %}"><img class="card-img-top" src="{{form.photo.url}}" alt="Card image cap"></a> 
+                <div class="card-body">
+                <h5 class="card-title">{{form.title}}</h5>
+                <p class="card-text">{{form.price}}</p>
+                <p class="card-text">{{form.location}}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <div>
+            <a href="#"><p class = "more1">글 더보기</p></a> <!--왜 아래로 안내려가냐?-->
+        </div>  
+
+        <br>
+        <h1 class = "food_list">동네마트 목록</h1>
+            {% for form in forms.all %}
+                <div class="card2" style="width: 18rem;"> <!--card로 바꾸면 테두리 생김(부트스트랩 내장 요소)-->
+                    <a href="{% url 'detail' form.id %}"><img class="card-img-top" src="{% static 'img/example.png' %}" alt="Card image cap"></a> 
+                    <div class="card-body">
+                    <h5 class="card-title">title</h5>
+                    <p class="card-text">price</p>
+                    <p class="card-text">location</p>
+                    </div>
+                </div>
+            {% endfor %}
+        <div>
+            <a href="#"><p class = "more1">글 더보기</p></a> <!--왜 아래로 안내려가냐?-->
+        </div>  
+        <footer>
+            <p>© 2020 서울여대 멋쟁이사자처럼</p>
+        </footer>
+    </body>
+    </html>
+{% endblock%}
+

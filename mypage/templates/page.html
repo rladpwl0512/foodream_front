@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>푸드림 마이페이지</title>
+        <style>
+           .container {
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width:40%;
+        }
+        </style>
+    </head>
+    <body>
+    마이페이지 개발중
+        <div class="container">
+            <h3>{{user.username}}님</h3>
+            <hr>
+            <a href="#"><h3>판매내역</h3></a>
+            <a href="{% url 'buy' %}"><h3>구매내역</h3></a>
+            <a href="/cart/cart"><h3>찜목록</h3></a>
+        </div>
+        
+    </body>
+    </html>
+{% endblock %}

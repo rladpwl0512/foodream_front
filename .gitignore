@@ -1,0 +1,17 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+*/migrations/00*.py
+/foodream/__pycache__/
+/foodream/db.sqlite3
+/foodream/media
+/foodream/*/migrations/00*.py
+/foodream/*.pyc
+/foodream/*.pot
+/foodream/*.log

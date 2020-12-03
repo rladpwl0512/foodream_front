@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+  <style>
+  .btn_like{
+    display: inline-block;
+    width : 50px;
+    height: 50px; 
+    background:url({% static 'img/instagramicon.png' %});
+    background-position: -100px -400px; 
+    text-indent: -9999px;
+    overflow:hidden;
+    border:none;
+  }
+  .btn-like.active{
+    display: inline-block;
+      width: 50px;
+      height: 50px;
+      background:url({% static 'img/instagramicon.png' %});
+      background-position: -100px -400px; 
+      text-indent: -9999px;
+      overflow:hidden;
+      border:none;
+  }
+  footer {
+              display: flex;
+              justify-content: center;
+              padding: 5px;
+              background-color: lightgray;
+              color: #fff;
+          }
+        
+  </style>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a href="{% url 'home' %}"><img src="{% static 'img/example.png' %}"  width=50 alt="로고 자리" title="로고 자리"></a><br>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/list">식재료직거래 <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+              <a class="nav-link" href="#">동네마트 <span class="sr-only">(current)</span></a>
+            </li>
+            
+            <li class="nav-item active">
+                <!-- <a href="/accounts/logout">로그아웃<span class="sr-only">(current)</span></a> -->
+                <a class="nav-link" href="/mileage/1">기부하기 <span class="sr-only">(current)</span></a>
+            </li>
+              
+            <li class="nav-item active">
+                <!-- <a href="/accounts/logout">로그아웃<span class="sr-only">(current)</span></a> -->
+                <a class="nav-link" href="/mypage">마이페이지 <span class="sr-only">(current)</span></a>
+            </li>
+
+             <li class="nav-item active">
+                <!-- <a href="/accounts/logout">로그아웃<span class="sr-only">(current)</span></a> -->
+                <a class="nav-link" href="/accounts/logout">로그아웃 <span class="sr-only">(current)</span></a>
+            </li>
+  
+
+           </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+            </form> 
+          </ul>
+        </div>
+      </nav>
+      {% block content %} <!--home.html 내용이 들어올 자리에 이렇게 작성-->
+      
+      {% endblock %}
+     
+</body>
+</html>

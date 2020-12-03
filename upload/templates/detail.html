@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<html>
+{% block content %}
+    <head>
+        <style>
+            #detail
+            {
+                border: 1px solid black;
+            }
+            .photo
+            {
+                width : 200px;
+                height : 200px;
+            }
+            
+            .wish
+            {
+                position:absolute;
+                left:50%;
+            }
+        </style>
+    </head>
+    <body>
+        판매 페이지
+        <div class ="container" id="detail">
+            <p>제목: {{form.title}}</p>
+            <p>이름: {{form.name}}</p>
+            <p>식품사진:<img class = "photo" src ={{form.photo.url}}></p>
+            <p>설명: {{form.explain}}</p>
+            <p>거래방법: {{form.deal_method}}</p>
+            <p>유통기한: <img class = "photo" src = {{form.deadline.url}}></p>
+            <p>가격: {{form.price}}</p>
+            <p>거래장소: {{form.location}}</p>
+        </div><br>
+        
+        <form action = "{% url 'edit' form.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value = "수정하기">
+        </form>
+
+        <form action = "{% url 'delete' form.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value = "삭제하기">
+        </form>
+
+        <!-- <a href="{% url 'home' %}">돌아가기</a> -->
+
+    </div><br>
+
+        <!--장바구니-->
+        <div class = "wish">
+            <a class="btn btn-secondary" href="{% url 'cart:add_cart' form.id %}"> 위시리스트</a>
+        </div>
+        <br> <br> <br>
+        <div>
+
+            {% load disqus_tags %}
+            {% disqus_show_comments %}
+
+        </div>
+
+        
+    </body>
+    </html>
+{% endblock %}

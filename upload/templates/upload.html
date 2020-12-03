@@ -1,0 +1,35 @@
+{% block content %}
+<div class = "container">
+    <form action ="{% url 'create' %}", method ="POST">
+        {% csrf_token %}
+        <h4>제목 </h4>
+        <input type = "text" name ="title">
+        <br>
+        <h4>이름 </h4>
+        <input type ="text" name = "name">
+        <h4>식품사진 </h4>
+        <input type = "file" name="photo">
+        <br>
+        <h4>설명 </h4>
+        <textarea cols = 40 rows = 10 name = "explain"></textarea>
+        <br>
+        <h4>거래방법 </h4>
+        <input type ="text" name = "deal_method">
+        <br>
+        <h4>유통기한 </h4>
+        <input type = "file" name="deadline">
+        <br>
+        <h4>가격</h4>
+        <input type ="text" name = "price">
+        <br>
+        <h4>거래장소</h4>
+        <input type ="text" name = "location">
+        <br>
+        <br>
+        <br>
+        <input class ="btn btn-dark" type = "submit" value = "글올리기">
+
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block content %}
+    <head>
+        
+    </head>
+    <body>
+        <div class ="container">
+            <form action = "{% url 'update' form.id %}" method="POST">
+            {% csrf_token %}
+            제목<input type="text" value = "{{form.title}}" name="title">
+            이름<input type="text" value = "{{form.name}}" name="name">
+            식품사진<input type="file" value = "{{form.photo}}" name="photo">  
+            설명<input type="text" value = "{{form.explain}}" name="explain">
+            거래방법<input type="text" value = "{{form.deal_method}}" name="deal_method">
+            유통기한<input type="file" value = "{{form.deadline}}" name="deadline"> 
+            가격<input type="text" value = "{{form.price}}" name="price">
+            거래장소<input type="text" value = "{{form.location}}" name="location">
+            <br>
+            <br>
+            <input class = "btn btn-dark" type = "submit" va;ue = "수정하기">
+            </form>
+        </div>
+    </body>
+    </html>
+{% endblock %}

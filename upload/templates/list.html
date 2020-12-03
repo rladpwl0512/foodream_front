@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      button {float: right; margin-right:40px; margin-top: -10px;}
+      {% comment %} body { padding:135px;} {% endcomment %}
+      .product_list {width:1188px; margin-left:-10px; }
+      .product_list li {float: left; margin: 0 20px 20px 0; position: relative; width:374px; height: 501px; border: 1px solid #414141; border-radius: 1em;}
+      .product_list li:hover {border-color:#333;}
+      .product_list dl { position: relative; padding: 374px 0 0 0;}
+      .product_list .title { padding: 0 0 10px 10px; font-size:24px; color:#1a1a1a; font-style: Bold;}
+      .product_list .img { position:absolute; left:0; top:0;}
+      .product_list .price { padding: 0 0 5px 10px; font-size:18px; color:#1a1a1a;}
+      .product_list .locate { padding: 0 0 0  10px; font-size:16px; color:#1a1a1a;}
+    
+     .card-img-top{
+                width: 300px;
+                height: 300px;
+            }
+            
+    </style>
+  </head>
+  <body>
+    <br>
+    <br>
+    <button><a href="{% url 'upload' %}" class='btn btn-dark'>글쓰기</a></button>
+    <br>
+    {% for form in posts %} 
+      <ul class="product_list">
+        <li>
+          <dl>
+            <dd class="title">{{form.title}}</dd>
+            {% if form.photo %}
+            <dd class="img"><a href="detail.html"></a><img class="card-img-top" src ={{form.photo.url}}></a></dd>
+            {% endif %}
+            <dd class="price">{{form.price}}</dd>
+            <dd class="locate">{{form.location}} <a href = "{% url 'detail' form.id %}">...상세보기</a></dd>
+          </dl>
+        </li>
+      </ul>
+    {% endfor %}
+      
+    {% if posts.has_previous %}
+      <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째 페이지</button></a>
+    {%endif%}
+    {%if posts.has_next%}
+      <a href="?page={{posts.next_page_number}}"><button type="button" class="btn btn-dark">다음</button></a>
+    {%endif%}
+    <span>{{posts.number}}</span>
+    <span> of </span>
+    <span>{{posts.paginator.num_pages}}</span>
+    {%if posts.has_previous%}
+        <a href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">이전</button></a>
+    {%endif%}
+    {%if posts.has_next%}
+      <a class="listbutton" href="?page={{posts.paginator.num_pages}}"><button type="button" class="btn btn-dark">마지막 페이지</button></a>
+    {%endif%}
+  </body>
+</html>
+{% endblock %}

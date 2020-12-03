@@ -1,0 +1,55 @@
+<html>
+<head>
+  <style>
+     
+     body { padding:135px;}
+    .donate_list {width:1188px; margin-left:-10px; }
+    .donate_list li {float: left; margin: 0 20px 20px 0; position: relative; width:374px; height: 501px; border: 1px solid #414141; border-radius: 1em;}
+    .donate_list li:hover {border-color:#333;}
+    .donate_list dl { position: relative; padding: 374px 0 0 0;}
+    .donate_list .title { padding: 0 0 10px 10px; font-size:24px; color:#1a1a1a; font-style: Bold;}
+    .donate_list .img { position:absolute; left:0; top:0;}
+    .donate_list .money { padding: 0 0 5px 10px; font-size:18px; color:#1a1a1a;}
+    .donate_list .group { padding: 0 0 0  10px; font-size:16px; color:#1a1a1a;}
+   
+  </style>
+</head>
+
+<body>
+{% block content %}
+
+  <br>
+  {% for mileage in posts %} 
+    <ul class="donate_list">
+      <li>
+        <dl>
+        <dd class="title">{{mileage.title}}</dd>
+        {% if mileage.photo %}
+        <dd class="img"><a href="content.html"></a><img src ={{mileage.photo.url}}></a></dd>
+        {% endif %}
+        <dd class="money">{{mileage.total_money}}</dd>
+        <dd class="group">{{mileage.group}} <a href = "{% url 'content' mileage.id %}">...상세보기</a></dd>
+
+        </dl>
+      </li>
+    </ul>
+  {% endfor %}
+    
+  {% if posts.has_previous %}
+    <a class="listbutton" href="?page=1"><button type="button" class="btn btn-dark">첫 번째 페이지</button></a>
+  {%endif%}
+  {%if posts.has_next%}
+    <a href="?page={{posts.next_page_number}}"><button type="button" class="btn btn-dark">다음</button></a>
+  {%endif%}
+  <span>{{posts.number}}</span>
+  <span> of </span>
+  <span>{{posts.paginator.num_pages}}</span>
+  {%if posts.has_previous%}
+      <a href="?page={{posts.previous_page_number}}"><button type="button" class="btn btn-dark">이전</button></a>
+  {%endif%}
+  {%if posts.has_next%}
+    <a class="listbutton" href="?page={{posts.paginator.num_pages}}"><button type="button" class="btn btn-dark">마지막 페이지</button></a>
+  {%endif%}
+{% endblock %}  
+</body>
+</html>

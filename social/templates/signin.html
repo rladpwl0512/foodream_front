@@ -1,0 +1,60 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
+<head>
+    <title>푸드림 로그인</title>
+    <style>
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width:40%;
+        }
+        .alert{
+            width:30%;
+        }
+        #logo { display: block; margin: 0px auto; }
+        
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <img src="{% static 'img/example.png' %}" width=50 alt="로고 자리" title="로고 자리" id=logo><br>
+            <h1>푸드림 로그인</h1>
+
+            {% if messages %}
+            <div class="alert alert-primary">
+                {% for message in messages %}
+                    {{ message }}
+                    
+                {% endfor %}
+               
+            </div>
+            {% endif %}
+
+            </script>
+            <form method="POST" action="{% url 'signin' %}"  class=login>
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="id를 입력해주세요." autocomplete="off" autofocus><br>                                                                 
+                <input type="password" name="password" autocomplete="off" placeholder="password를 입력해주세요."><br>
+                <input type="submit" value="로그인"> <a href="/accounts/signup">회원가입</a><br>
+                <a class="button secondaryAction" href="/accounts/password/reset/">비밀번호를 잊으셨나요?</a>
+            </form>
+
+            <br>
+            <a href="{% provider_login_url 'google' %}"><img src="{% static 'img/google button3.png' %}" width= 196 height= 48 alt="구글 로그인" title="구글 로그인"></a><br>
+            <a href="{% provider_login_url 'naver' %}"><img src="{% static 'img/naver button.png' %}" width= 191 height= 45 alt="네이버 로그인" title="네이버 로그인"></a><br>
+            <a href="{% provider_login_url 'kakao' %}"><img src="{% static 'img/kakao button.png' %}" width= 191 height= 45 alt="카카오 로그인" title="카카오 로그인"></a>
+        </center>
+    </div>
+</body>
